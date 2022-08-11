@@ -3,6 +3,7 @@ package com.assignment.amadeus.ui
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this, myViewModelFactory).get(MainViewModel::class.java)
         adapter = CityAdapter(CityAdapter.OnClickListener { cityDetails ->
-           // Toast.makeText(applicationContext, "${cityDetails.id}", Toast.LENGTH_SHORT).show()
+            // Toast.makeText(applicationContext, "${cityDetails.id}", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MapsActivity::class.java)
             val bundle = Bundle()
             bundle.putString("cityName", cityDetails.cityName.toString())
@@ -93,5 +94,24 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        AlertDialog.Builder(this).apply {
+            setTitle("Please confirm.")
+            setMessage("Are you want to exit the app?")
 
+            setPositiveButton("Yes") { _, _ ->
+                // if user press yes, then finish the current activity
+                super.onBackPressed()
+                finish()
+            }
+
+            setNegativeButton("No") { _, _ ->
+                // if user press no, then return the activity
+                Toast.makeText(this@MainActivity, "Thank you",
+                    Toast.LENGTH_LONG).show()
+            }
+
+            setCancelable(true)
+        }.create().show()
+    }
 }
