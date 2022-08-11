@@ -1,16 +1,11 @@
 package com.assignment.amadeus.viewmodel
 
-import android.content.Context
-import android.content.Intent
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.assignment.amadeus.data.local.CityDatabase
 import com.assignment.amadeus.data.local.CityEntity
-import com.assignment.amadeus.ui.DetailsPage
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val cityDatabase: CityDatabase) : ViewModel() {
@@ -20,16 +15,18 @@ class MainViewModel(private val cityDatabase: CityDatabase) : ViewModel() {
     private val _loading = MutableLiveData<Boolean>()
     val loading: MutableLiveData<Boolean>
         get() = _loading
+
     init {
         _loading.value = true
         searchAllCity()
     }
 
-    fun insertCity(cityEntity: CityEntity){
-        viewModelScope.launch{
+    fun insertCity(cityEntity: CityEntity) {
+        viewModelScope.launch {
             cityDatabase.dao.insertCity(cityEntity)
         }
     }
+
     fun searchAllCity(): LiveData<List<CityEntity>> {
         cityList = MutableLiveData()
         cityList = cityDatabase.dao.getAllCity()
@@ -44,8 +41,6 @@ class MainViewModel(private val cityDatabase: CityDatabase) : ViewModel() {
         _loading.value = false
         return cityList
     }
-
-
 
 
 }

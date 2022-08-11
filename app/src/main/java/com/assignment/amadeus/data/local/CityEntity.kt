@@ -19,11 +19,3 @@ data class CityEntity(
     var id: Long = 0,
 )
 
-/* val longitude: Double,
-    val latitude: Double,
-    val zoom: Int,
-    val time: Int,
-    val temp: Double,
-    val speed: Double,
-    val main: String,
-    val description: String,*/

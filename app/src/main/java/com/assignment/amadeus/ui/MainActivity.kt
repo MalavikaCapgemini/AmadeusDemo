@@ -8,7 +8,6 @@ import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.room.PrimaryKey
 import com.assignment.amadeus.adapter.CityAdapter
 import com.assignment.amadeus.data.local.CityDatabase
 import com.assignment.amadeus.databinding.ActivityMainBinding
@@ -17,19 +16,19 @@ import com.assignment.amadeus.viewmodel.MyViewModelFactory
 
 
 class MainActivity : AppCompatActivity() {
-    //declaring adapter,viewmodel and binding
+
     private lateinit var binding: ActivityMainBinding
-   // private val adapter by lazy { CityAdapter() }
+
+    // private val adapter by lazy { CityAdapter() }
     private lateinit var adapter: CityAdapter
     private lateinit var viewModel: MainViewModel
 
-    //private lateinit var adapter: CityAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //instance of database
+
         val cityDatabase = CityDatabase.getInstance(this)
         val myViewModelFactory = MyViewModelFactory(cityDatabase!!)
 
@@ -52,7 +51,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         })
 
-        //submitting data to the adapter which the maps it to recyclerview
+
         viewModel.cityList.observe(this, Observer { result ->
             adapter.submitList(result)
             binding.recyclerView.adapter = adapter
