@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AmadeusAssignment</string>
+    <string name="notes_title">City Title</string>
+    <string name="search_hint">Search by city</string>
+    <string name="google_maps_key">AIzaSyAuyR_-dhcdBQN9S8cw1U9DELzh4fOk9kk</string>
+    <string name="title_activity_maps">MapsActivity</string>
+</resources>
