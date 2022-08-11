@@ -43,7 +43,6 @@ class CityAdapter(private val onClickListener: OnClickListener) : ListAdapter<Ci
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         val post = getItem(position)
-        Log.e("position","in adapter---"+position)
         holder.bind(post)
         holder.itemView.setOnClickListener {
             onClickListener.onClick(post)

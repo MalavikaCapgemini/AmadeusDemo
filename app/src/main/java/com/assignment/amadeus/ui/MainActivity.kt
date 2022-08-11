@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this, myViewModelFactory).get(MainViewModel::class.java)
         adapter = CityAdapter(CityAdapter.OnClickListener { cityDetails ->
-            Toast.makeText(applicationContext, "${cityDetails.id}", Toast.LENGTH_SHORT).show()
+           // Toast.makeText(applicationContext, "${cityDetails.id}", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MapsActivity::class.java)
             val bundle = Bundle()
             bundle.putString("cityName", cityDetails.cityName.toString())
